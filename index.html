@@ -95,8 +95,6 @@
 
       function show_map(){
 
-        $("#map-container").html('<div id="mapid"></div>');
-
         // variabili mappa
         var center_lat = 45.464421;
         var center_lng = 9.186497;
@@ -160,7 +158,8 @@
 
               geolocate = 1;
               $("#txt_gps_label").html("Disable GPS location");
-              $( "#mapid" ).show();
+              $("#map-container").html('<div id="mapid"></div>');
+
               show_map();
 
               // onury/geolocator START (https://github.com/onury/geolocator)
@@ -190,6 +189,7 @@
                    var my_center_lng = location['coords']['longitude'];
                    console.log(my_center_lng);
                    //$("#container-red").html(my_center_lat+"-"+my_center_lng);
+
                    create_user_map(my_center_lat,my_center_lng);
                  });
 
