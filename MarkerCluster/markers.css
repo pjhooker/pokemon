@@ -1,0 +1,263 @@
+.mycluster {
+	width: 40px;
+	height: 40px;
+	background-color: greenyellow;
+	text-align: center;
+	font-size: 24px;
+}
+
+.mycluster1 {
+	width: 40px;
+	height: 40px;
+	background-clip: padding-box;
+	border-radius: 20px;
+	}
+.mycluster1 div {
+	width: 30px;
+	height: 30px;
+	margin-left: 5px;
+	margin-top: 5px;
+	padding-top: 8px;
+	color:#fff;
+	text-align: center;
+	vertical-align: middle;
+	border-radius: 15px;
+	font: 16px "Helvetica Neue", Arial, Helvetica, sans-serif;
+	}
+.mycluster1 span {
+	line-height: 30px;
+	}
+
+.mycluster1 {
+	background-color: rgba(140,198,62, 0.6);
+	}
+.mycluster1 div {
+	background-color: rgba(8,62,136, 1);
+	}
+
+	.myclusterMon {
+		width: 40px;
+		height: 40px;
+		background-clip: padding-box;
+		border-radius: 20px;
+		}
+	.myclusterMon div {
+		width: 30px;
+		height: 30px;
+		margin-left: 5px;
+		margin-top: 5px;
+		padding-top: 8px;
+		color:#fff;
+		text-align: center;
+		vertical-align: middle;
+		border-radius: 15px;
+		font: 16px "Helvetica Neue", Arial, Helvetica, sans-serif;
+		}
+	.myclusterMon span {
+		line-height: 30px;
+		}
+
+	.myclusterMon {
+		background-color: rgba(87,20,25, 0.6);
+		}
+	.myclusterMon div {
+		background-color: rgba(87,20,25, 0.6);
+		}
+
+		.myclusterHW1 {
+			width: 40px;
+			height: 40px;
+			background-clip: padding-box;
+			border-radius: 20px;
+			}
+		.myclusterHW1 div {
+			width: 30px;
+			height: 30px;
+			margin-left: 5px;
+			margin-top: 5px;
+			padding-top: 8px;
+			color:#fff;
+			text-align: center;
+			vertical-align: middle;
+			border-radius: 15px;
+			font: 16px 'Knewave', cursive;
+			}
+		.myclusterHW1 span {
+			line-height: 30px;
+			}
+
+		.myclusterHW1 {
+			background-color: RGBA(0,5,255,0.6);
+			}
+		.myclusterHW1 div {
+			background-color: RGBA(0,5,255,0.6);
+			}
+
+
+
+			.myclusterXM1 {
+				width: 40px;
+				height: 40px;
+				background-clip: padding-box;
+				border-radius: 20px;
+				}
+			.myclusterXM1 div {
+				width: 30px;
+				height: 30px;
+				margin-left: 5px;
+				margin-top: 5px;
+				padding-top: 8px;
+				color:#fff;
+				text-align: center;
+				vertical-align: middle;
+				border-radius: 15px;
+				font: 16px 'Knewave', cursive;
+				}
+			.myclusterXM1 span {
+				line-height: 30px;
+				}
+
+			.myclusterXM1 {
+				background-color: rgba(20,32,87, 0.6);
+				}
+			.myclusterXM1 div {
+				background-color: rgba(47,62,195, 0.6);
+				}
+
+/* marker <10 */
+.myclusterXM10 {
+	width: 40px;
+	height: 40px;
+	background-clip: padding-box;
+	border-radius: 20px;
+}
+.myclusterXM10 div {
+	width: 30px;
+	height: 30px;
+	margin-left: 5px;
+	margin-top: 5px;
+	padding-top: 8px;
+	color:#fff;
+	text-align: center;
+	vertical-align: middle;
+	border-radius: 15px;
+	font: 16px 'Knewave', cursive;
+}
+.myclusterXM10 span {line-height: 30px;}
+.myclusterXM10 {background-color: rgba(254,255,0,0.6);} /*yellow*/
+.myclusterXM10 div {background-color: rgba(254,255,0,0.6);}
+
+/* marker <20 */
+.myclusterXM20 {
+	width: 60px;
+	height: 60px;
+	background-clip: padding-box;
+	border-radius: 30px;
+}
+.myclusterXM20 div {
+	width: 30px;
+	height: 30px;
+	margin-left: 5px;
+	margin-top: 5px;
+	padding-top: 8px;
+	color:#fff;
+	text-align: center;
+	vertical-align: middle;
+	border-radius: 15px;
+	font: 16px 'Knewave', cursive;
+}
+.myclusterXM20 span {line-height: 30px;}
+.myclusterXM20 {background-color: rgba(255,86,0,0.6);} /*red*/
+.myclusterXM20 div {background-color: rgba(255,86,0,0.6);}
+
+/* marker <30 */
+.myclusterXM30 {
+	width: 80px;
+	height: 80px;
+	background-clip: padding-box;
+	border-radius: 40px;
+}
+.myclusterXM30 div {
+	width: 30px;
+	height: 30px;
+	margin-left: 5px;
+	margin-top: 5px;
+	padding-top: 8px;
+	color:#fff;
+	text-align: center;
+	vertical-align: middle;
+	border-radius: 15px;
+	font: 16px 'Knewave', cursive;
+}
+.myclusterXM30 span {line-height: 30px;}
+.myclusterXM30 {background-color: rgba(28,0,244,0.6);} /*blue*/
+.myclusterXM30 div {background-color: rgba(28,0,244,0.6);}
+
+/* marker <50 */
+.myclusterXM50 {
+	width: 100px;
+	height: 100px;
+	background-clip: padding-box;
+	border-radius: 50px;
+}
+.myclusterXM50 div {
+	width: 30px;
+	height: 30px;
+	margin-left: 5px;
+	margin-top: 5px;
+	padding-top: 8px;
+	color:#fff;
+	text-align: center;
+	vertical-align: middle;
+	border-radius: 15px;
+	font: 16px 'Knewave', cursive;
+}
+.myclusterXM50 span {line-height: 30px;}
+.myclusterXM50 {background-color: rgba(53,234,0,0.6);} /*GREEN*/
+.myclusterXM50 div {background-color: rgba(53,234,0,0.6);}
+
+/* marker <100 */
+.myclusterXM100 {
+	width: 150px;
+	height: 150px;
+	background-clip: padding-box;
+	border-radius: 75px;
+}
+.myclusterXM100 div {
+	width: 30px;
+	height: 30px;
+	margin-left: 5px;
+	margin-top: 5px;
+	padding-top: 8px;
+	color:#fff;
+	text-align: center;
+	vertical-align: middle;
+	border-radius: 15px;
+	font: 16px 'Knewave', cursive;
+}
+.myclusterXM100 span {line-height: 30px;}
+.myclusterXM100 {background-color: rgba(244,0,216,0.6);} /*viola*/
+.myclusterXM100 div {background-color: rgba(244,0,216, 0.6);}
+
+/* marker >100 */
+.myclusterXM100x {
+	width: 200px;
+	height: 200px;
+	background-clip: padding-box;
+	border-radius: 100px;
+}
+.myclusterXM100x div {
+	width: 30px;
+	height: 30px;
+	margin-left: 5px;
+	margin-top: 5px;
+	padding-top: 8px;
+	color:#fff;
+	text-align: center;
+	vertical-align: middle;
+	border-radius: 15px;
+	font: 16px 'Knewave', cursive;
+}
+.myclusterXM100x span {line-height: 30px;}
+.myclusterXM100x {background-color: rgba(20,32,87, 0.6);}
+.myclusterXM100x div {background-color: rgba(47,62,195, 0.6);}
