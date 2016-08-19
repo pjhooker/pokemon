@@ -27,7 +27,7 @@
             var my_center_lng = location['coords']['longitude'];
             console.log(my_center_lng);
             //$("#container-red").html(my_center_lat+"-"+my_center_lng);
-            //create_user_map(my_center_lat,my_center_lng);
+            create_user_map(my_center_lat,my_center_lng);
         });
 
   // onury/geolocator END
