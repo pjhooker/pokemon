@@ -1,0 +1,239 @@
+<?php
+/**
+ * The template for ...
+ *
+ * @package WEB MAP by CityPlanner.it
+ * @subpackage BASE
+ * @since Web Map base 0.1
+ */
+
+?><!DOCTYPE html>
+<html lang="it-IT" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Map base</title>
+
+    <!-- css list -->
+
+      <link rel="stylesheet" href="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.css" />
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+      <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+      <link rel="stylesheet" href="https://rawgit.com/pjhooker/pokemon/master/fezvrasta/bootstrap-material-design.css">
+      <link rel="stylesheet" href="https://rawgit.com/pjhooker/pokemon/master/fezvrasta/ripples.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/material-fullpalette.css">
+      <link rel="stylesheet" href="https://rawgit.com/pjhooker/pokemon/master/fezvrasta/snackbar.min.css" rel="stylesheet">
+
+    <!-- custom css progetto -->
+      <link rel="stylesheet" href="css/style_start.css">
+
+  </head>
+  <body>
+
+    <div class="container">
+
+      <div class="page-header" id="banner">
+
+        <div class="row">
+          <div class="col-md-offset-2 col-md-8">
+            <div class="bs-component" id="container-red">
+              <div class="jumbotron">
+                <h2>Welkome to Pokèmon MAP</h2>
+                <p style="font-size:14px;">Enable GPS for get your current position or start with unlocalized map</p>
+                <div class="togglebutton">
+                  <label>
+                    <input type="checkbox" onclick="enable_gps()"><span class="toggle"></span> <span id="txt_gps_label">Enable GPS location</span>
+                  </label>
+                </div>
+                <a href="http://www.cityplanner.it/privacy/" target="_blank">Privacy & cookie</a>
+                <div id="button-map" style="text-align:center;">
+                  <a href="http://cityplanner.it/webapp/pokemon/" class="btn btn-raised btn-info">Go to unlocalized MAP<div class="ripple-container"></div></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-offset-2 col-md-8">
+            <div class="bs-component" id="map-container">
+
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-offset-2 col-md-8">
+            <div class="bs-component">
+    	         <p id="attribution"></p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- js list -->
+
+   <!-- jQuery Core & UI-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+    <script src="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://rawgit.com/pjhooker/pokemon/master/fezvrasta/material.min.js"></script>
+
+    <script type="text/javascript" src="https://rawgit.com/pjhooker/pokemon/master/js/geolocator.min.js"></script>
+
+    <!-- custom js progetto -->
+
+    <script>
+
+      function show_map(){
+
+        $("#map-container").html('<div id="mapid"></div>');
+
+        // variabili mappa
+        var center_lat = 45.464421;
+        var center_lng = 9.186497;
+        var zoom_level = 14;
+
+        var mymap = L.map(
+         'mapid',
+         {
+           zoomControl: false
+         }
+        ).setView(
+         [center_lat, center_lng],
+         zoom_level
+        );
+
+         function onClick_zoomIn () {
+           mymap.zoomIn();
+         }
+         function onClick_zoomOut () {
+           mymap.zoomOut();
+         }
+         function onClick_home () {
+           mymap.setView([center_lat, center_lng], zoom_level);
+         }
+
+        L.tileLayer(
+          'https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.{ext}', {
+            attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+            subdomains: 'abcd',
+            minZoom: 0,
+            maxZoom: 20,
+            ext: 'png'
+          }
+        ).addTo(mymap);
+
+        var str_attribution = $( "div.leaflet-control-attribution" ).html();
+        //console.log(str);
+
+        $( "div.leaflet-control-attribution" ).hide();
+        $('#attribution').html(str_attribution);
+
+      }
+
+
+          // MY POSITION
+          pointhighlight = new L.featureGroup();
+          pointLeaf = new L.featureGroup();
+
+          var greenIcon = L.icon({
+              iconUrl: 'http://leafletjs.com/docs/images/leaf-green.png',
+
+              iconSize:     [38, 95], // size of the icon
+              iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+              popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+          });
+
+          var geolocate = 0;
+
+          function enable_gps(){
+            if(geolocate == 0){
+
+              geolocate = 1;
+              $("#txt_gps_label").html("Disable GPS location");
+              $( "#mapid" ).show();
+              show_map();
+
+              // onury/geolocator START (https://github.com/onury/geolocator)
+                 geolocator.config({
+                     language: "en",
+                     google: {
+                         version: "3",
+                         key: "AIzaSyB_deOb9fLaF2uZY47QXAmkkY0p8Fhg-EY"
+                     }
+                 });
+
+                 var options = {
+                   enableHighAccuracy: true,
+                   timeout: 6000,
+                   maximumAge: 0,
+                   desiredAccuracy: 30,
+                   fallbackToIP: false, // fallback to IP if Geolocation fails or rejected
+                   addressLookup: true,
+                   timezone: true//,
+                   //map: "map-canvas"
+                 };
+                 geolocator.locate(options, function (err, location) {
+                   if (err) return console.log(err);
+                   //console.log(location);
+                   var my_center_lat = location['coords']['latitude'];
+                   console.log(my_center_lat);
+                   var my_center_lng = location['coords']['longitude'];
+                   console.log(my_center_lng);
+                   //$("#container-red").html(my_center_lat+"-"+my_center_lng);
+                   create_user_map(my_center_lat,my_center_lng);
+                 });
+
+               // onury/geolocator END
+             }
+             else{
+               geolocate = 0;
+               $("#txt_gps_label").html("Enable GPS location");
+               $("#map-container").html('');
+               $('#attribution').html('');
+               $("#button-map").html('<a href="http://cityplanner.it/webapp/pokemon/" class="btn btn-raised btn-info">Go to unlocalized MAP<div class="ripple-container"></div></a>');
+             }
+          }
+
+          function create_user_map(my_center_lat,my_center_lng){
+
+             mymap.setView([my_center_lat,my_center_lng], 20);
+
+             var poi_leaf = L.marker([my_center_lat,my_center_lng], {icon: greenIcon}).addTo(mymap);
+             pointLeaf.addLayer(poi_leaf);
+             pointLeaf.addTo(mymap);
+
+             var circle = L.circle(
+               [my_center_lat,my_center_lng],
+               // controlla la dimensione del cerchio
+               20,
+               // controlla lo stile del punto
+               {
+                 color: 'red',
+                 opacity: 1,
+                 fillColor: '#f03',
+                 fillOpacity: 0.5,
+                 weight:0,
+                 clickable:false // rende non cliccabile
+               }
+             );
+             pointhighlight.addLayer(circle);
+             //map.addLayer(pointhighlight);
+             pointhighlight.addTo(mymap).bringToBack(); // fa scendere il layere sotto a tutto, ma sopra la mappa
+
+             $("#button-map").html('<a href="http://cityplanner.it/webapp/pokemon/index.php?lat='+my_center_lat+'&lng='+my_center_lng+'" class="btn btn-raised btn-danger">Go to localized MAP<div class="ripple-container"></div></a>');
+          }
+
+     </script>
+
+  </body>
+</html>
