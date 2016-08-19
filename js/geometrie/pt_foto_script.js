@@ -1,6 +1,6 @@
 // GEOM 2
 
-var file_geojson2 = "http://www.cityplanner.it/experiment_host/supply/geojsonphp/pt_poke_mysql_geojson.php";
+var file_geojson2 = "data/pt_poke_mysql.geojson";
 
 // POST
 var cluster = 1;
