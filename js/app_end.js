@@ -1,7 +1,6 @@
 
 
-/*
-  // onury/geolocator START (https://github.com/onury/geolocator)
+ // onury/geolocator START (https://github.com/onury/geolocator)
     geolocator.config({
         language: "en",
         google: {
@@ -10,7 +9,6 @@
         }
     });
 
-    function locate_user() {
         var options = {
             enableHighAccuracy: true,
             timeout: 6000,
@@ -31,9 +29,8 @@
             //$("#container-red").html(my_center_lat+"-"+my_center_lng);
             //create_user_map(my_center_lat,my_center_lng);
         });
-    };
+
   // onury/geolocator END
-*/
 
 
   var str_attribution = $( "div.leaflet-control-attribution" ).html();
