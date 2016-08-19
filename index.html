@@ -93,12 +93,12 @@
 
     <script>
 
-      function show_map(){
+      // variabili mappa
+      var center_lat = 45.464421;
+      var center_lng = 9.186497;
+      var zoom_level = 14;
 
-        // variabili mappa
-        var center_lat = 45.464421;
-        var center_lng = 9.186497;
-        var zoom_level = 14;
+
 
         var mymap = L.map(
          'mapid',
@@ -136,7 +136,7 @@
         $( "div.leaflet-control-attribution" ).hide();
         $('#attribution').html(str_attribution);
 
-      }
+
 
 
           // MY POSITION
@@ -158,12 +158,12 @@
 
               geolocate = 1;
               $("#txt_gps_label").html("Disable GPS location");
-              $("#map-container").html('<div id="mapid"></div>');
+              //$("#map-container").html('<div id="mapid"></div>');
 
-              show_map();
+
 
               // onury/geolocator START (https://github.com/onury/geolocator)
-                 geolocator.config({
+                geolocator.config({
                      language: "en",
                      google: {
                          version: "3",
@@ -198,13 +198,15 @@
              else{
                geolocate = 0;
                $("#txt_gps_label").html("Enable GPS location");
-               $("#map-container").html('');
+               //$("#map-container").html('');
                $('#attribution').html('');
                $("#button-map").html('<a href="http://cityplanner.it/webapp/pokemon/" class="btn btn-raised btn-info">Go to unlocalized MAP<div class="ripple-container"></div></a>');
              }
           }
 
           function create_user_map(my_center_lat,my_center_lng){
+
+            //show_map();
 
              mymap.setView([my_center_lat,my_center_lng], 20);
 
