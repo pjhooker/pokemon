@@ -48,7 +48,7 @@
                 </div>
                 <a href="http://www.cityplanner.it/privacy/" target="_blank">Privacy & cookie</a>
                 <div id="button-map" style="text-align:center;">
-                  <a href="http://cityplanner.it/webapp/pokemon/" class="btn btn-raised btn-info">Go to unlocalized MAP<div class="ripple-container"></div></a>
+                  <a href="http://cityplanner.it/webapp/pokemon/" class="btn btn-raised btn-info" id="btn1">Go to unlocalized MAP<div class="ripple-container"></div></a>
                 </div>
               </div>
             </div>
@@ -156,7 +156,7 @@
 
           function enable_gps(){
             if(geolocate == 0){
-
+              $("#btn1").html("Wait...");
               geolocate = 1;
               $("#txt_gps_label").html("Disable GPS location");
               //$("#map-container").html('<div id="mapid"></div>');
@@ -184,6 +184,7 @@
                  };
                  geolocator.locate(options, function (err, location) {
                    if (err) return console.log(err);
+                   $("#btn1").html("No GPS service ... sorry!");
                    //console.log(location);
                    var my_center_lat = location['coords']['latitude'];
                    console.log(my_center_lat);
@@ -201,7 +202,7 @@
                $("#txt_gps_label").html("Enable GPS location");
                //$("#map-container").html('');
                $('#attribution').html('');
-               $("#button-map").html('<a href="http://cityplanner.it/webapp/pokemon/" class="btn btn-raised btn-info">Go to unlocalized MAP<div class="ripple-container"></div></a>');
+               $("#button-map").html('<a href="http://cityplanner.it/webapp/pokemon/" class="btn btn-raised btn-info" id="btn1">Go to unlocalized MAP<div class="ripple-container"></div></a>');
              }
           }
 
