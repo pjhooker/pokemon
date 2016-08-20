@@ -199,18 +199,18 @@
                  });
 
                  var options = {
-                   enableHighAccuracy: true,
-                   timeout: 6000,
+                   enableHighAccuracy: false,
+                   timeout: 10000,
                    maximumAge: 0,
                    desiredAccuracy: 30,
                    fallbackToIP: false, // fallback to IP if Geolocation fails or rejected
-                   addressLookup: true,
-                   timezone: true//,
+                   addressLookup: false,
+                   timezone: false//,
                    //map: "map-canvas"
                  };
                  geolocator.locate(options, function (err, location) {
-                   if (err) return console.log(err);
                    $("#btn1").html("No GPS service ... sorry!");
+                   if (err) return console.log(err);
                    //console.log(location);
                    var my_center_lat = location['coords']['latitude'];
                    console.log(my_center_lat);
