@@ -30,8 +30,11 @@
 
           <!-- ROW 01 COL 01 -->
           <div class="col-md-12">
-                <h2>Welcome to Pokèmon MAP</h2>
-                <p><a href="http://www.gistonic.it/experiment/post_html/post_html01.php">TORNA</a></p>
+                <h2>Geolocalize</h2>
+                <p>
+                  <a id="torna"  postid="0" lat="0" lng="0" class="btn btn-raised btn-success">Torna</a>
+                  <a id="procedi"  postid="0" lat="0" lng="0" class="btn btn-raised btn-success">Procedi</a>
+                </p>
                 <p style="font-size:14px;">Enable GPS for get your current position or start with unlocalized map</p>
                 <div class="togglebutton">
                   <label>
@@ -54,9 +57,29 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <script src="https://rawgit.com/FezVrasta/bootstrap-material-design/master/dist/js/material.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/geolocator/2.0.0/geolocator.min.js"></script>
     
     <!-- custom js progetto -->
+
+  <script>
+
+    $('#torna').on('click',function(){
+
+      var postid = $(this).attr('postid');
+      var lat = $(this).attr('lat');
+      var lng = $(this).attr('lng');
+      window.open("http://www.gistonic.it/geoblog-milano/geotool/add-content-public-c/?postid="+postid+"&lat="+lat+"&lng="+lng,"_self");
+
+    }); 
+  
+    $('#procedi').on('click',function(){
+
+      var postid = $(this).attr('postid');
+      var lat = $(this).attr('lat');
+      var lng = $(this).attr('lng');
+      window.open("http://www.gistonic.it/geoblog-milano/geotool/add-content-public-c/?postid="+postid+"&lat="+lat+"&lng="+lng,"_self");
+
+    });   
+  </script>
 
     <script>
 
@@ -97,7 +120,10 @@
                var my_center_lng = location['coords']['longitude'];
                console.log(my_center_lng);
                //$("#container-red").html(my_center_lat+"-"+my_center_lng);
-
+                $('#torna').attr('lat',my_center_lat);
+                $('#procedi').attr('lat',my_center_lat);
+                $('#torna').attr('lng',my_center_lng);
+                $('#procedi').attr('lng',my_center_lng);                
              });
 
            // onury/geolocator END
@@ -123,7 +149,8 @@
              var paramValue = keyValuePair.replace(/^[^=]*\=/, ""); // some decoding is probably necessary
              GET[paramName] = paramValue;
          });
-
+         $('#torna').attr('postid',queryString);
+         $('#procedi').attr('postid',queryString);
          //document.getElementById("myForm").getElementsByTagName("input")[0].value = HASH["form/title"];
          //document.getElementById("myForm").getElementsByTagName("textarea")[0].value = HASH["form/text"];
      </script>
