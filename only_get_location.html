@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="it-IT" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GISTONIC GEOLOCATOR</title>
+
+
+    <!-- css list -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://rawgit.com/FezVrasta/bootstrap-material-design/master/dist/css/bootstrap-material-design.css">
+    <link rel="stylesheet" href="https://rawgit.com/FezVrasta/bootstrap-material-design/master/dist/css/ripples.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/material-fullpalette.css">
+    <link rel="stylesheet" href="https://rawgit.com/FezVrasta/snackbarjs/master/dist/snackbar.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://rawgit.com/twbs/bootstrap/master/docs/examples/dashboard/dashboard.css">
+    <link rel='stylesheet' id='fontawesome-css'  href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css' type='text/css' media='all' />
+    <link rel="stylesheet" href="http://www.gistonic.it/geoblog-milano/wp-content/themes/geo-web/style.css">
+
+
+  </head>
+  <body>
+
+    <div class="container">
+      <div class="bs-docs-section">
+        <!-- ROW 01 -->
+        <div class="row">
+
+          <!-- ROW 01 COL 01 -->
+          <div class="col-md-12">
+                <h2>Welcome to Pokèmon MAP</h2>
+                <p><a href="http://www.gistonic.it/experiment/post_html/post_html01.php">TORNA</a></p>
+                <p style="font-size:14px;">Enable GPS for get your current position or start with unlocalized map</p>
+                <div class="togglebutton">
+                  <label>
+                    <input type="checkbox" onclick="enable_gps()"><span class="toggle"></span> <span id="txt_gps_label">Enable GPS location</span>
+                  </label>
+                </div>
+                <a href="http://www.cityplanner.it/privacy/" target="_blank">Privacy & cookie</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- js list -->
+
+
+  <!-- jQuery Core & UI-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="https://rawgit.com/FezVrasta/bootstrap-material-design/master/dist/js/material.js"></script>
+    
+    <!-- custom js progetto -->
+
+    <script>
+
+      var geolocate = 0;
+
+      function enable_gps(){
+        if(geolocate == 0){
+          $("#btn1").html("Wait...");
+          geolocate = 1;
+          $("#txt_gps_label").html("Disable GPS location");
+          //$("#map-container").html('<div id="mapid"></div>');
+
+          // onury/geolocator START (https://github.com/onury/geolocator)
+            geolocator.config({
+                 language: "en",
+                 google: {
+                     version: "3",
+                     key: "AIzaSyB_deOb9fLaF2uZY47QXAmkkY0p8Fhg-EY"
+                 }
+             });
+
+             var options = {
+               enableHighAccuracy: false,
+               timeout: 10000,
+               maximumAge: 0,
+               desiredAccuracy: 30,
+               fallbackToIP: false, // fallback to IP if Geolocation fails or rejected
+               addressLookup: false,
+               timezone: false//,
+               //map: "map-canvas"
+             };
+             geolocator.locate(options, function (err, location) {
+               $("#btn1").html("No GPS service ... sorry!");
+               if (err) return console.log(err);
+               //console.log(location);
+               var my_center_lat = location['coords']['latitude'];
+               console.log(my_center_lat);
+               var my_center_lng = location['coords']['longitude'];
+               console.log(my_center_lng);
+               //$("#container-red").html(my_center_lat+"-"+my_center_lng);
+
+             });
+
+           // onury/geolocator END
+         }
+         else{
+           geolocate = 0;
+           $("#txt_gps_label").html("Enable GPS location");
+           $("#button-map").html('<a href="http://cityplanner.it/webapp/pokemon/" class="btn btn-raised btn-info" id="btn1">Go to unlocalized MAP<div class="ripple-container"></div></a>');
+         }
+      }
+
+
+     </script>
+
+     <script>
+         
+
+         var GET = {};
+         var queryString = window.location.search.replace(/^\?/, '');
+         console.log('HASH:' + queryString);
+         queryString.split(/\&/).forEach(function(keyValuePair) {
+             var paramName = keyValuePair.replace(/=.*$/, ""); // some decoding is probably necessary
+             var paramValue = keyValuePair.replace(/^[^=]*\=/, ""); // some decoding is probably necessary
+             GET[paramName] = paramValue;
+         });
+
+         //document.getElementById("myForm").getElementsByTagName("input")[0].value = HASH["form/title"];
+         //document.getElementById("myForm").getElementsByTagName("textarea")[0].value = HASH["form/text"];
+     </script>
+
+  </body>
+</html>
